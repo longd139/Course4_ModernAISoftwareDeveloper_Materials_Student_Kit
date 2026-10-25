@@ -1,0 +1,14 @@
+# Node.js dependencies and logs
+node_modules/
+*.log
+npm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Archives & Temporary files
+*.zip
+*.rar
+*.tmp
+~$*
