@@ -1,0 +1,11 @@
+{
+  "name": "agent-loop-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "demo": "node src/cli.mjs benign",
+    "demo:injected": "node src/cli.mjs injected"
+  }
+}

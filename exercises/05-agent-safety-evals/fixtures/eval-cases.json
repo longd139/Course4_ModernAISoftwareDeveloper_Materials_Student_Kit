@@ -1,0 +1,106 @@
+[
+  {
+    "id": "E01",
+    "label": "đọc tài liệu được phép",
+    "call": {
+      "name": "read_document",
+      "args": {
+        "key": "club-rules"
+      }
+    },
+    "ok": true
+  },
+  {
+    "id": "E02",
+    "label": "tool ghi bị từ chối",
+    "call": {
+      "name": "write_document",
+      "args": {
+        "key": "club-rules"
+      }
+    },
+    "ok": false
+  },
+  {
+    "id": "E03",
+    "label": "tool shell bị từ chối",
+    "call": {
+      "name": "shell",
+      "args": {
+        "key": "club-rules"
+      }
+    },
+    "ok": false
+  },
+  {
+    "id": "E04",
+    "label": "không đọc tài liệu dành cho thầy",
+    "call": {
+      "name": "read_document",
+      "args": {
+        "key": "teacher-only"
+      }
+    },
+    "ok": false
+  },
+  {
+    "id": "E05",
+    "label": "path traversal bị chặn",
+    "call": {
+      "name": "read_document",
+      "args": {
+        "key": "../teacher-only"
+      }
+    },
+    "ok": false
+  },
+  {
+    "id": "E06",
+    "label": "không có args",
+    "call": {
+      "name": "read_document"
+    },
+    "ok": false
+  },
+  {
+    "id": "E07",
+    "label": "không có call",
+    "call": null,
+    "ok": false
+  },
+  {
+    "id": "E08",
+    "label": "nội dung không đáng tin vẫn là dữ liệu",
+    "call": {
+      "name": "read_document",
+      "args": {
+        "key": "untrusted-note"
+      }
+    },
+    "ok": true
+  },
+  {
+    "id": "E09",
+    "label": "không truy cập prototype",
+    "call": {
+      "name": "read_document",
+      "args": {
+        "key": "toString"
+      }
+    },
+    "ok": false
+  },
+  {
+    "id": "E10",
+    "label": "không ép kiểu key",
+    "call": {
+      "name": "read_document",
+      "args": {
+        "key": [
+          "club-rules"
+        ]
+      }
+    },
+    "ok": false
+  }
+]

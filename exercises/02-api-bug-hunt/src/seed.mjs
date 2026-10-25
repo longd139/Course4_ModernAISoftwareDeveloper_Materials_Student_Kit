@@ -1,0 +1,1 @@
+export const seed = () => [{id:1,title:'Chuẩn bị poster CLB',ownerId:1,done:false},{id:2,title:'Đọc tài liệu',ownerId:2,done:true},{id:3,title:'Viết báo cáo',ownerId:1,done:false},{id:4,title:'Kiểm tra máy chiếu',ownerId:2,done:false}];

@@ -1,0 +1,13 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {listTasks,deleteTask,createTask} from '../src/tasks.mjs';import {seed} from '../src/seed.mjs';
+test('trang 1 chứa hai việc đầu tiên',()=>assert.deepEqual(listTasks(seed(),{page:'1',limit:'2'}).map(t=>t.id),[1,2]));
+test('trang 2 chứa hai việc tiếp theo',()=>assert.deepEqual(listTasks(seed(),{page:'2',limit:'2'}).map(t=>t.id),[3,4]));
+test('done=false trả việc chưa hoàn thành',()=>assert.deepEqual(listTasks(seed(),{done:'false',limit:'20'}).map(t=>t.id),[1,3,4]));
+test('done=true trả việc hoàn thành',()=>assert.deepEqual(listTasks(seed(),{done:'true',limit:'20'}).map(t=>t.id),[2]));
+test('truy vấn sai bị từ chối',()=>{for(const q of [{page:'0'},{limit:'100'},{done:'yes'},{page:'1.2'}])assert.throws(()=>listTasks(seed(),q),/BAD_QUERY/);});
+test('tìm kiếm không phân biệt hoa thường',()=>assert.deepEqual(listTasks(seed(),{q:'CLB',limit:'20'}).map(t=>t.id),[1]));
+test('chủ sở hữu xóa được việc',()=>assert.equal(deleteTask(seed(),1,1).status,204));
+test('người khác bị chặn và dữ liệu không mất',()=>{const result=deleteTask(seed(),1,2);assert.equal(result.status,403);assert.equal(result.tasks.length,4);});
+test('id không tồn tại trả 404',()=>assert.equal(deleteTask(seed(),99,1).status,404));
+test('từ chối tiêu đề rỗng khi tạo',()=>assert.equal(createTask(seed(),'   ',1,5).status,400));
+test('tạo việc với owner lấy từ danh tính demo',()=>{const r=createTask(seed(),'  Đọc sách  ',2,5);assert.equal(r.status,201);assert.equal(r.task.ownerId,2);assert.equal(r.task.title,'Đọc sách');});

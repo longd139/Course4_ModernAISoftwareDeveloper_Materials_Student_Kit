@@ -1,0 +1,2 @@
+{ "name": "test-cheat-lab", "private": true, "version": "1.0.0", "type": "module",
+  "scripts": { "test": "node --test tests/spec.test.mjs", "mutate": "node tools/mutate.mjs tests/spec.test.mjs" } }
